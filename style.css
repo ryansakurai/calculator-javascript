@@ -2,8 +2,9 @@
     --radius: 1rem;
     --button-radius: 50%;
     --calculator-color: rgb(17, 17, 17);
-    --visor-color: rgba(0, 0, 0, 0.301);
-    --button-hover-color: rgb(33, 0, 49);
+    --visor-filter: rgba(0, 0, 0, 0.301);
+    --audio-button-hover-color: rgb(0, 0, 0);
+    --calculator-button-hover-color: rgb(33, 0, 49);
 }
 
 * {
@@ -20,6 +21,26 @@ body {
     height: 100vh;
 }
 
+#music-button {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border-width: 0px;
+    background-color: var(--audio-button-color);
+}
+
+#music-button:hover {
+    cursor: pointer;
+    background-color: var(--audio-button-hover-color);
+}
+
+#music-button img {
+    width: 90%;
+}
+
 #background-video {
     position: fixed;
     top: 0;
@@ -27,8 +48,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-  }
-  
+}
 
 #calculator {
     background-color: var(--calculator-color);
@@ -58,13 +78,14 @@ body {
 }
 
 #calculator button:hover {
-    background-color: var(--button-hover-color);
+    cursor: pointer;
+    background-color: var(--calculator-button-hover-color);
 }
 
 #visor {
     grid-area: visor;
     border-radius: var(--radius);
-    background-color: var(--visor-color);
+    background-color: var(--visor-filter);
     display: flex;
     align-items: center;
     justify-content: flex-end;
