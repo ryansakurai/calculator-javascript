@@ -85,7 +85,8 @@ document.querySelector("#nine").addEventListener("click", () => {
 })
 
 document.querySelector("#decimal").addEventListener("click", () => {
-    visor.textContent += "."
+    if(visor.textContent && !visor.textContent.includes("."))
+        visor.textContent += "."
 })
 
 document.querySelector("#add").addEventListener("click", () => {
