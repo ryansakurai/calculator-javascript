@@ -16,9 +16,9 @@ const showResult = () => {
     else if(operation == "subtract")
         visor.textContent = prevNumber - Number(visor.textContent)
     else if(operation == "multiply")
-        visor.textContent = prevNumber * Number(visor.textContent)
+        visor.textContent = (prevNumber * Number(visor.textContent)).toFixed(6)
     else if(operation == "divide")
-        visor.textContent = prevNumber / Number(visor.textContent)
+        visor.textContent = (prevNumber / Number(visor.textContent)).toFixed(6)
     else
         return
 
@@ -26,20 +26,22 @@ const showResult = () => {
 }
 
 const addOperation = (operationToAdd) => {
-    if(prevNumber && visor.textContent) {
-        showResult()
-        prevNumber = Number(visor.textContent)
-        clearVisor()
-        operation = operationToAdd
+    if(visor.textContent) {
+        if(prevNumber) {
+            showResult()
+            prevNumber = Number(visor.textContent)
+            clearVisor()
+            operation = operationToAdd
+        }
+        else{
+            prevNumber = Number(visor.textContent)
+            clearVisor()
+            operation = operationToAdd
+        }
+        return true
     }
-    else if(prevNumber && !visor.textContent) {
-        operation = operationToAdd
-    }
-    else if(!prevNumber && visor.textContent) {
-        prevNumber = Number(visor.textContent)
-        clearVisor()
-        operation = operationToAdd
-    }
+
+    return false
 }
 
 document.querySelector("#zero").addEventListener("click", () => {
@@ -91,10 +93,8 @@ document.querySelector("#add").addEventListener("click", () => {
 })
 
 document.querySelector("#subtract").addEventListener("click", () => {
-    addOperation("subtract")
-    if(!prevNumber && !visor.textContent) {
+    if(!addOperation("subtract") && !visor.textContent)
         visor.textContent += "-"
-    }
 })
 
 document.querySelector("#multiply").addEventListener("click", () => {
